@@ -7,9 +7,6 @@ package net.bestprog.firstTask;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -33,31 +30,22 @@ public class Launcher {
             e.printStackTrace();
         }
 
-        Sort sort = new Sort();
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println(sort.getMaxInt(ints));
+                System.out.println(getMaxInt(ints));
             }
         });
         Thread thread2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println(sort.getMinInt(ints));
+                System.out.println(getMinInt(ints));
             }
         });
-        long start = System.currentTimeMillis();
         thread1.start();
         thread2.start();
-        thread1.join();
-        thread2.join();
-        long finish = System.currentTimeMillis();
-        System.out.println(finish-start);
     }
-}
-
-class Sort {
-    public int getMaxInt(int[] array) {
+    public static int getMaxInt(int[] array) {
         int max = Integer.MIN_VALUE;
         for (final int item : array) {
             if (max < item) {
@@ -67,7 +55,7 @@ class Sort {
         return max;
     }
 
-    public int getMinInt(int[] array) {
+    public static int getMinInt(int[] array) {
         int min = Integer.MAX_VALUE;
         for (final int item : array) {
             if (min > item) {
